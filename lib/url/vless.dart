@@ -11,7 +11,7 @@ class VlessURL extends V2RayURL {
     }
     uri = temp;
     var sni = super.populateTransportSettings(
-      transport: uri.queryParameters["type"] ?? "tcp",
+      transport: uri.queryParameters["type"] ?? "tls",
       headerType: uri.queryParameters["headerType"],
       host: uri.queryParameters["host"],
       path: uri.queryParameters["path"],
@@ -25,6 +25,7 @@ class VlessURL extends V2RayURL {
       streamSecurity: uri.queryParameters["security"] ?? "",
       allowInsecure: allowInsecure,
       sni: uri.queryParameters["sni"] ?? sni,
+      // sni: uri.queryParameters["sni"] ?? "yahoo.com",
       fingerprint: uri.queryParameters["fp"] ??
           streamSetting['tlsSettings']?['fingerprint'],
       alpns: uri.queryParameters["alpn"],
@@ -58,10 +59,10 @@ class VlessURL extends V2RayURL {
                 {
                   "id": uri.userInfo,
                   "alterId": null,
-                  "security": security,
+                  "security": uri.queryParameters["security"] ?? "tls",
                   "level": level,
                   "encryption": uri.queryParameters["encryption"] ?? "none",
-                  "flow": uri.queryParameters["flow"] ?? "",
+                  "flow": uri.queryParameters["flow"] ?? "xtls-rprx-vision",
                 }
               ]
             }

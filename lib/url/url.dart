@@ -117,7 +117,7 @@ abstract class V2RayURL {
 
   late Map<String, dynamic> streamSetting = {
     "network": network,
-    "security": "",
+    "security": "tls",
     "tcpSettings": null,
     "kcpSettings": null,
     "wsSettings": null,
