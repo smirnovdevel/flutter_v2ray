@@ -180,7 +180,8 @@ public final class V2rayCoreManager {
             v2RayPoint.runLoop(false);
             V2RAY_STATE = AppConfigs.V2RAY_STATES.V2RAY_CONNECTED;
             if (isV2rayCoreRunning()) {
-                showNotification(v2rayConfig);
+                // TODO Nemesida
+                // showNotification(v2rayConfig);
             }
         } catch (Exception e) {
             Log.e(V2rayCoreManager.class.getSimpleName(), "startCore failed =>", e);
