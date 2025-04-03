@@ -16,9 +16,12 @@ public class V2rayDisconnectReceiver extends BroadcastReceiver {
             V2rayController.StopV2ray(context);
 
             // Получаем доступ к SharedPreferences
+            // SharedPreferences sharedPreferences = context.getApplicationContext()
+            //     .getSharedPreferences("com.github.blueboytm.flutter_v2ray.preferences", Context.MODE_PRIVATE);
+            // Используем имя пакета приложения для доступа к SharedPreferences
             SharedPreferences sharedPreferences = context.getApplicationContext()
-                .getSharedPreferences("com.github.blueboytm.flutter_v2ray.preferences", Context.MODE_PRIVATE);
-                
+                .getSharedPreferences("com.nemesida.preferences", Context.MODE_PRIVATE);
+
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove("server_id");
             editor.remove("start_time");
