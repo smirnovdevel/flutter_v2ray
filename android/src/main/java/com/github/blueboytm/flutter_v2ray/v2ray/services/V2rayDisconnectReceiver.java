@@ -3,6 +3,7 @@ package com.github.blueboytm.flutter_v2ray.v2ray.services;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.github.blueboytm.flutter_v2ray.v2ray.V2rayController;
@@ -13,6 +14,15 @@ public class V2rayDisconnectReceiver extends BroadcastReceiver {
         try {
             // В данном случае вызываем метод для разрыва соединения
             V2rayController.StopV2ray(context);
+
+            // Удаляем 'server_id' и 'start_time' из SharedPreferences
+            SharedPreferences sharedPreferences = context.getSharedPreferences("com.github.blueboytm.flutter_v2ray.preferences", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove("server_id");
+            editor.remove("start_time");
+            editor.apply();  // Применяем изменения
+
+            Log.d("V2rayDisconnectReceiver", "server_id and start_time removed from SharedPreferences");
         } catch (Exception e) {
             Log.e("V2rayDisconnectReceiver", "onReceive failed", e);
         }
