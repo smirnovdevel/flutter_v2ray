@@ -42,5 +42,7 @@
                 <action android:name="V2RAY_CONNECTION_INFO" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".V2rayDisconnectReceiver" android:enabled="true" android:exported="true"/>
     </application>
 </manifest>

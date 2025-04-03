@@ -94,6 +94,10 @@ public class FlutterV2rayPlugin implements FlutterPlugin, ActivityAware, PluginR
                     V2rayController.StopV2ray(binding.getApplicationContext());
                     result.success(null);
                     break;
+                case "scheduleDisconnect":
+                    V2rayController.scheduleDisconnect(binding.getApplicationContext());
+                    result.success(null);
+                    break;
                 case "initializeV2Ray":
                     String iconResourceName = call.argument("notificationIconResourceName");
                     String iconResourceType = call.argument("notificationIconResourceType");

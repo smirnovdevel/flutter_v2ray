@@ -100,6 +100,11 @@ class FlutterV2ray {
     await FlutterV2rayPlatform.instance.stopV2Ray();
   }
 
+  /// Delay Stop V2Ray service.
+  Future<void> scheduleDisconnect() async {
+    await FlutterV2rayPlatform.instance.stopV2Ray();
+  }
+
   /// This method returns the real server delay of the configuration.
   Future<int> getServerDelay(
       {required String config,

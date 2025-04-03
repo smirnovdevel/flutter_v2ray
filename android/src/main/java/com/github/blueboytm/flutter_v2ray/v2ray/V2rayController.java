@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+
 import com.github.blueboytm.flutter_v2ray.v2ray.core.V2rayCoreManager;
 import com.github.blueboytm.flutter_v2ray.v2ray.services.V2rayProxyOnlyService;
 import com.github.blueboytm.flutter_v2ray.v2ray.services.V2rayVPNService;
@@ -78,6 +81,25 @@ public class V2rayController {
         stop_intent.putExtra("COMMAND", AppConfigs.V2RAY_SERVICE_COMMANDS.STOP_SERVICE);
         context.startService(stop_intent);
         AppConfigs.V2RAY_CONFIG = null;
+    }
+
+    // Новый метод для разрыва соединения через таймер
+    public static void scheduleDisconnect(final Context context, long delayInSeconds) {
+        // Создаем намерение, которое будет выполнять разрыв соединения
+        Intent intent = new Intent(context, V2rayDisconnectReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        // Получаем AlarmManager для планирования задачи
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        long triggerAtMillis = System.currentTimeMillis() + (delayInSeconds * 1000);
+
+        // Планируем выполнение разрыва соединения через delayInSeconds секунд
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
     }
 
     public static long getConnectedV2rayServerDelay(Context context) {
