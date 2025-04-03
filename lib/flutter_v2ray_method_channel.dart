@@ -70,6 +70,11 @@ class MethodChannelFlutterV2ray extends FlutterV2rayPlatform {
   }
 
   @override
+  Future<void> cancelDisconnect() async {
+    await methodChannel.invokeMethod('cancelDisconnect');
+  }
+
+  @override
   Future<int> getServerDelay(
       {required String config, required String url}) async {
     return await methodChannel.invokeMethod('getServerDelay', {

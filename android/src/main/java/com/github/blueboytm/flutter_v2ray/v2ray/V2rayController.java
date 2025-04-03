@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import libv2ray.Libv2ray;
 
 public class V2rayController {
+    private static PendingIntent pendingIntent;
 
     public static void init(final Context context, final int app_icon, final String app_name) {
         Utilities.copyAssets(context);
@@ -89,7 +90,7 @@ public class V2rayController {
         Intent schedule_intent;
         // Создаем намерение, которое будет выполнять разрыв соединения
         schedule_intent = new Intent(context, V2rayDisconnectReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+        pendingIntent = PendingIntent.getBroadcast(
                 context,
                 0,
                 schedule_intent,
@@ -102,6 +103,16 @@ public class V2rayController {
 
         // Планируем выполнение разрыва соединения через delayInSeconds секунд
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+    }
+
+    // Новый метод для отмены задания отключения
+    public static void cancelDisconnect(Context context) {
+        if (pendingIntent != null) {
+            // Отменяем заданное выполнение
+            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.cancel(pendingIntent);
+            pendingIntent = null; // Очистим ссылку
+        }
     }
 
     public static long getConnectedV2rayServerDelay(Context context) {
