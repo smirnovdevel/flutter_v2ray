@@ -11,7 +11,7 @@ import android.app.PendingIntent;
 
 import com.github.blueboytm.flutter_v2ray.v2ray.core.V2rayCoreManager;
 import com.github.blueboytm.flutter_v2ray.v2ray.services.V2rayProxyOnlyService;
-import com.github.blueboytm.flutter_v2ray.v2ray.V2rayDisconnectReceiver;
+import com.github.blueboytm.flutter_v2ray.v2ray.services.V2rayDisconnectReceiver;
 import com.github.blueboytm.flutter_v2ray.v2ray.services.V2rayVPNService;
 import com.github.blueboytm.flutter_v2ray.v2ray.utils.AppConfigs;
 import com.github.blueboytm.flutter_v2ray.v2ray.utils.Utilities;
