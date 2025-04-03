@@ -15,8 +15,10 @@ public class V2rayDisconnectReceiver extends BroadcastReceiver {
             // В данном случае вызываем метод для разрыва соединения
             V2rayController.StopV2ray(context);
 
-            // Удаляем 'server_id' и 'start_time' из SharedPreferences
-            SharedPreferences sharedPreferences = context.getSharedPreferences("com.github.blueboytm.flutter_v2ray.preferences", Context.MODE_PRIVATE);
+            // Получаем доступ к SharedPreferences
+            SharedPreferences sharedPreferences = context.getApplicationContext()
+                .getSharedPreferences("com.github.blueboytm.flutter_v2ray.preferences", Context.MODE_PRIVATE);
+                
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove("server_id");
             editor.remove("start_time");
