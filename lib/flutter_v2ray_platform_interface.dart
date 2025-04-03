@@ -51,7 +51,7 @@ abstract class FlutterV2rayPlatform extends PlatformInterface {
     throw UnimplementedError('stopV2Ray() has not been implemented.');
   }
 
-  Future<void> scheduleDisconnect() {
+  Future<void> scheduleDisconnect({required int delay}) {
     throw UnimplementedError('scheduleDisconnect() has not been implemented.');
   }
 

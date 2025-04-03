@@ -85,7 +85,7 @@ public class V2rayController {
     }
 
     // Новый метод для разрыва соединения через таймер
-    public static void scheduleDisconnect(final Context context) {
+    public static void scheduleDisconnect(final Context context, final int delay) {
         Intent schedule_intent;
         // Создаем намерение, которое будет выполнять разрыв соединения
         schedule_intent = new Intent(context, V2rayDisconnectReceiver.class);
@@ -98,7 +98,7 @@ public class V2rayController {
 
         // Получаем AlarmManager для планирования задачи
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        long triggerAtMillis = System.currentTimeMillis() + (10 * 1000);
+        long triggerAtMillis = System.currentTimeMillis() + (delay * 1000);
 
         // Планируем выполнение разрыва соединения через delayInSeconds секунд
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);

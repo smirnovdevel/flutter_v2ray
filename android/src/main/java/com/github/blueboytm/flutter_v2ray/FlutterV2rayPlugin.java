@@ -95,7 +95,7 @@ public class FlutterV2rayPlugin implements FlutterPlugin, ActivityAware, PluginR
                     result.success(null);
                     break;
                 case "scheduleDisconnect":
-                    V2rayController.scheduleDisconnect(binding.getApplicationContext());
+                    V2rayController.scheduleDisconnect(binding.getApplicationContext(), call.argument("delay"));
                     result.success(null);
                     break;
                 case "initializeV2Ray":
