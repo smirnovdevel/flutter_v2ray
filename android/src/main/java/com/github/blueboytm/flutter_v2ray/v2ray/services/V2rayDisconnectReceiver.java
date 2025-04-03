@@ -1,3 +1,5 @@
+package com.github.blueboytm.flutter_v2ray.v2ray.services;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
