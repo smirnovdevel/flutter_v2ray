@@ -85,7 +85,7 @@ public class V2rayController {
     }
 
     // Новый метод для разрыва соединения через таймер
-    public static void scheduleDisconnect(final Context context, long delayInSeconds) {
+    public static void scheduleDisconnect(final Context context) {
         Intent schedule_intent;
         // Создаем намерение, которое будет выполнять разрыв соединения
         schedule_intent = new Intent(context, V2rayDisconnectReceiver.class);
